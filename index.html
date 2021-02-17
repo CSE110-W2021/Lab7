@@ -85,6 +85,11 @@
       // the writeup to view the URL pattern for fetch one and fetch all
       function fetchAll() {
         // TODO
+        fetch(document.getElementById("endpoint").value)
+          .then(response => response.json())
+          .then(data => {
+            document.getElementById("output").textContent = JSON.stringify(data);
+          });
       }
 
       // This function should fetch one entry from the given endpoint.
@@ -93,14 +98,33 @@
       // the writeup to view the URL pattern for fetch one and fetch all
       function fetchOne() {
         // TODO
+        let recordId = prompt("Enter record id");
+        fetch(document.getElementById("endpoint").value+"/"+recordId)
+          .then(response => response.json())
+          .then(data => {
+            document.getElementById("output").textContent = JSON.stringify(data);
+          }); 
       }
 
       // This function should use fetch to create one entry in the given endpoint.
       // From the 4 CRUD actions, this is the CREATE action, and uses the POST http method.
       // The main difference from updateRecord() will be the URL you send data to; check
       // the writeup to view the URL pattern for create and update
-      function createRecord() {
+      function createRecord(status) {
         // TODO
+        if(status == 'show'){
+          document.getElementById("recordForm").style.display = "block";
+        } else{
+          let toCreate = {"author":document.getElementById("author").value, "title":document.getElementById("title").value};
+          fetch(document.getElementById("endpoint").value, {
+          method:"POST",
+          body: JSON.stringify(toCreate)
+          }).then(response => response.json())
+          .then(data => {
+            console.log(data);
+            document.getElementById("output").textContent = JSON.stringify(data);
+          });
+        }
       }
 
       // This function should use fetch to update one existing entry in the given endpoint.
