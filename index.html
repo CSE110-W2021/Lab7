@@ -142,20 +142,26 @@
     // The main difference from updateRecord() will be the URL you send data to; check
     // the writeup to view the URL pattern for create and update
     function createRecord() {
-      // TODO
-
       let endpoint = document.getElementById("endpoint").value;
+      
+      // Clear output display
       document.getElementById("output").innerText = "";
 
+      // Show only recordForm
       document
         .getElementById("recordForm")
         .style.display = "block";
+      document
+        .getElementById("recordIDcontainer")
+        .style.display = "none";
 
+      // Creating an event listender for the submit
       document
         .getElementById("recordForm")
         .addEventListener("submit", event => {
-          event.preventDefault();
+          event.preventDefault(); // Don't let the page reset
 
+          // Gather the info on author and title
           let author = document.getElementById("author").value;
           let title = document.getElementById("title").value;
 
@@ -164,6 +170,7 @@
             "author": author
           };
 
+          // Begin fetching
           fetch(endpoint, {
             method: 'POST', // or 'PUT'
             headers: {
@@ -171,13 +178,9 @@
             },
             body: JSON.stringify(data),
           })
+            .then(handleErrors)
             .then(function (response) {
-              if (response.status !== 201) {
-                console.log('Looks like there was a problem. Status Code: ' + response.status);
-                alert("PROBLEMO!");
-              }
-
-              response.json().then(function (data) {
+                response.json().then(function (data) {
                 console.log("Success?", data);
               document.getElementById("output").innerText = JSON.stringify(data);
               })
