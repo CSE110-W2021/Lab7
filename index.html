@@ -84,7 +84,9 @@
       // The main difference from fetchOne() will be the URL you request from; check
       // the writeup to view the URL pattern for fetch one and fetch all
       function fetchAll() {
-        //document.getElementById('endpoint').value
+        document.getElementById('recordForm').style.display = "none";
+        document.getElementById('recordIDcontainer').style.display = "none";
+
         fetch(document.getElementById('endpoint').value)
         .then(function(response) {
           if(!response.ok){
@@ -105,6 +107,9 @@
       // The main difference from fetchAll() will be the URL you request from; check
       // the writeup to view the URL pattern for fetch one and fetch all
       function fetchOne() {
+        document.getElementById('recordForm').style.display = "none";
+        document.getElementById('recordIDcontainer').style.display = "none";
+
         let id = window.prompt('Enter record id');
 
         fetch(document.getElementById('endpoint').value+'/'+id)
@@ -130,7 +135,16 @@
       // The main difference from updateRecord() will be the URL you send data to; check
       // the writeup to view the URL pattern for create and update
       function createRecord() {
-        // TODO
+        document.getElementById('recordForm').style.display = "inline";
+        document.getElementById('recordIDcontainer').style.display = "none";
+
+        let author = document.getElementById('author').value
+        let title = document.getElementById('title').value
+
+        document.getElementById('endpoint').value
+
+
+
       }
 
       // This function should use fetch to update one existing entry in the given endpoint.
@@ -138,7 +152,9 @@
       // The main difference from createRecord() will be the URL you send data to; check
       // the writeup to view the URL pattern for create and update
       function updateRecord() {
-        // TODO
+        document.getElementById('recordForm').style.display = "inline";
+        document.getElementById('recordIDcontainer').style.display = "inline";
+
       }
 
       // This function should use fetch to delete one existing entry in the given endpoint.
