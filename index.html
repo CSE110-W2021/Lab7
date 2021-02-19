@@ -84,12 +84,19 @@
       // The main difference from fetchOne() will be the URL you request from; check
       // the writeup to view the URL pattern for fetch one and fetch all
       function fetchAll() {
-        fetch('http://localhost:3000/posts')
+        //document.getElementById('endpoint').value
+        fetch(document.getElementById('endpoint').value)
+        .then(function(response) {
+          if(!response.ok){
+            throw ('Network Error: 404');
+          }
+          return response;
+        }) 
         .then(response => response.json())
         .then(data => {
           document.getElementById('output').innerHTML = JSON.stringify(data);
         }).catch(function(err){
-          document.getElementById('output').innerHTML = 'Network Error: 404';
+          document.getElementById('output').innerHTML = err;
         });
       }
 
@@ -100,17 +107,20 @@
       function fetchOne() {
         let id = window.prompt('Enter record id');
 
-        fetch('http://localhost:3000/posts/'+id)
+        fetch(document.getElementById('endpoint').value+'/'+id)
+        .then(function(response) {
+          if(!response.ok){
+            throw ('Network Error: 404');
+          }
+          return response;
+        }) 
         .then(response => response.json())
         .then(data => {
-          if (JSON.stringify(data) == '') {
-            document.getElementById('output').innerHTML = 'Network Error: 404';
-          }
-          else {
-            document.getElementById('output').innerHTML = JSON.stringify(data);
-          }
+      
+        document.getElementById('output').innerHTML = JSON.stringify(data);
+
         }).catch((err) => {
-          document.getElementById('output').innerHTML = 'Network Error: 404';
+          document.getElementById('output').innerHTML = err;
         });
 
       }
