@@ -86,10 +86,15 @@
       function fetchAll() {
         fetch('http://localhost:3000/posts')
         .then(response => response.json())
+        .then(function(response) {
+          if(!response.ok){
+            throw ('Network Error: 404');
+          }
+        }) 
         .then(data => {
           document.getElementById('output').innerHTML = JSON.stringify(data);
         }).catch(function(err){
-          document.getElementById('output').innerHTML = 'Network Error: 404';
+          document.getElementById('output').innerHTML = err;
         });
       }
 
@@ -102,15 +107,17 @@
 
         fetch('http://localhost:3000/posts/'+id)
         .then(response => response.json())
+        .then(function(response) {
+          if(!response.ok){
+            throw ('Network Error: 404');
+          }
+        }) 
         .then(data => {
-          if (JSON.stringify(data) == '') {
-            document.getElementById('output').innerHTML = 'Network Error: 404';
-          }
-          else {
-            document.getElementById('output').innerHTML = JSON.stringify(data);
-          }
+      
+        document.getElementById('output').innerHTML = JSON.stringify(data);
+
         }).catch((err) => {
-          document.getElementById('output').innerHTML = 'Network Error: 404';
+          document.getElementById('output').innerHTML = err;
         });
 
       }
