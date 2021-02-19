@@ -93,10 +93,15 @@
           },
           mode: 'cors',
         })
+        .then(handleErrors)
         .then(response => response.json())
         .then(data => {
           console.log("Success", data);
           document.getElementById("output").innerText = JSON.stringify(data);
+        })
+        .catch(err => {
+              document.getElementById("output").innerText = err;
+              alert("Error Detected");
         });
     }
 
@@ -127,6 +132,10 @@
         .then(data => {
           console.log("Success?", data);
           document.getElementById("output").innerText = JSON.stringify(data);
+        })
+        .catch(err => {
+              document.getElementById("output").innerText = err;
+              alert("Error Detected");
         });
     }
 
@@ -266,7 +275,10 @@
         .then(response => {
           document.getElementById("output").innerText = "{}";
         })
-
+        .catch(err => {
+              document.getElementById("output").innerText = err;
+              alert("Error Detected");
+        });
     }
 
     window.addEventListener('DOMContentLoaded', () => {
