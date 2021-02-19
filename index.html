@@ -160,6 +160,8 @@
             response.url
 
             return response.text()
+          }).then(data => {
+          document.getElementById('output').innerHTML = JSON.stringify(JSON.parse(data));
           }).catch(function(error) {
             error.message
           })
@@ -200,6 +202,8 @@
             response.url
 
             return response.text()
+          }).then(data => {
+          document.getElementById('output').innerHTML = JSON.stringify(JSON.parse(data));
           }).catch(function(error) {
             error.message
           })
@@ -236,6 +240,8 @@
             response.url
 
             return response.text()
+          }).then(data => {
+          document.getElementById('output').innerHTML = JSON.stringify(JSON.parse(data));
           }).catch(function(error) {
             error.message
           })
