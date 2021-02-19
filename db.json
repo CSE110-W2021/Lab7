@@ -4,11 +4,6 @@
       "id": 1,
       "title": "json-server",
       "author": "typicode"
-    },
-    {
-      "title": "hello",
-      "author": "Richard",
-      "id": 2
     }
   ],
   "comments": [

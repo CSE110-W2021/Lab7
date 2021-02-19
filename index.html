@@ -135,15 +135,36 @@
       // The main difference from updateRecord() will be the URL you send data to; check
       // the writeup to view the URL pattern for create and update
       function createRecord() {
-        document.getElementById('recordForm').style.display = "inline";
-        document.getElementById('recordIDcontainer').style.display = "none";
+        if (arguments[0] == 'show') {
+          document.getElementById('recordForm').style.display = "inline";
+          document.getElementById('recordIDcontainer').style.display = "none";
+        }
+        else if (arguments[0] == 'submit') {
+          let author = document.getElementById('author').value
+          let title = document.getElementById('title').value
 
-        let author = document.getElementById('author').value
-        let title = document.getElementById('title').value
+          fetch(document.getElementById('endpoint').value, {
+            method: "POST",
+            body: JSON.stringify({
+            "author": author,
+            "title": title
+          }),
+            headers: {
+              "Content-Type": "application/json; charset=utf-8"
+            },
+            credentials: "same-origin"
+          }).then(function(response) {
+            response.status
+            response.statusText
+            response.headers
+            response.url
 
-        document.getElementById('endpoint').value
+            return response.text()
+          }).catch(function(error) {
+            error.message
+          })
 
-
+        }
 
       }
 
@@ -152,9 +173,39 @@
       // The main difference from createRecord() will be the URL you send data to; check
       // the writeup to view the URL pattern for create and update
       function updateRecord() {
-        document.getElementById('recordForm').style.display = "inline";
-        document.getElementById('recordIDcontainer').style.display = "inline";
+        if (arguments[0] == 'show') {
+          document.getElementById('recordForm').style.display = "inline";
+          document.getElementById('recordIDcontainer').style.display = "inline";
+        }
+        else if (arguments[0] == 'submit') {
+          let author = document.getElementById('author').value
+          let title = document.getElementById('title').value
+          let recordID = document.getElementById('recordID').value
 
+          fetch(document.getElementById('endpoint').value+'/'+recordID, {
+            method: "PUT",
+            body: JSON.stringify({
+            "author": author,
+            "title": title,
+            "id": recordID
+          }),
+            headers: {
+              "Content-Type": "application/json; charset=utf-8"
+            },
+            credentials: "same-origin"
+          }).then(function(response) {
+            response.status
+            response.statusText
+            response.headers
+            response.url
+
+            return response.text()
+          }).catch(function(error) {
+            error.message
+          })
+
+        }
+        
       }
 
       // This function should use fetch to delete one existing entry in the given endpoint.
@@ -163,7 +214,32 @@
       // request; check the writeup to view the URL pattern for get one and delete. THERE IS NO 
       // delete all, only delete one.
       function deleteRecord() {
-        // TODO
+        document.getElementById('recordForm').style.display = "none";
+        document.getElementById('recordIDcontainer').style.display = "none";
+
+        let id = window.prompt('Enter record id');
+
+        fetch(document.getElementById('endpoint').value+'/'+id, {
+            method: "DELETE",
+            body: JSON.stringify({
+            "author": author,
+            "title": title
+          }),
+            headers: {
+              "Content-Type": "application/json; charset=utf-8"
+            },
+            credentials: "same-origin"
+          }).then(function(response) {
+            response.status
+            response.statusText
+            response.headers
+            response.url
+
+            return response.text()
+          }).catch(function(error) {
+            error.message
+          })
+
       }
 
       window.addEventListener('DOMContentLoaded', () => {
