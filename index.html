@@ -163,8 +163,8 @@
         document
           .getElementById("recordIDcontainer")
           .style.display = "none";
-        document.getElementById("author").value = '';
-        document.getElementById("title").value = '';
+        document.getElementById("author").value = "";
+        document.getElementById("title").value = "";
       }
       else if (todo === 'submit') {
         let endpoint = document.getElementById("endpoint").value;
@@ -189,7 +189,6 @@
         .then(handleErrors)
         .then(function (response) {
             response.json().then(function (data) {
-            console.log("Success?", data);
           document.getElementById("output").innerText = JSON.stringify(data);
           })
         })
@@ -217,9 +216,9 @@
         document
           .getElementById("recordIDcontainer")
           .style.display = "block";
-        document.getElementById("author").value = '';
-        document.getElementById("title").value = '';
-        document.getElementById("recordID").value = '';
+        document.getElementById("author").value = "";
+        document.getElementById("title").value = "";
+        document.getElementById("recordID").value = "";
       }
 
       else if (todo === 'submit') {
