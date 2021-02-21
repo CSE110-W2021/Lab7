@@ -1,11 +1,6 @@
 {
   "posts": [
     {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
-    },
-    {
       "id": 2,
       "title": "Smith",
       "author": "Adam"
@@ -44,15 +39,24 @@
       "title": "adadadaadaa",
       "author": "dasdad",
       "id": 9
-    }
-  ],
-  "comments": [
+    },
     {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "title": "bbbbbbbbbbbb",
+      "author": "aaaaaaaaaaaaaa",
+      "id": 10
+    },
+    {
+      "title": "bbbbbbbbbbbb",
+      "author": "aaaaaaaaaaaaaa",
+      "id": 11
+    },
+    {
+      "title": "dasdadadadad",
+      "author": "adadadadadad",
+      "id": 12
     }
   ],
+  "comments": [],
   "profile": {
     "name": "typicode"
   }
