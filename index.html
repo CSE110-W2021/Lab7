@@ -260,6 +260,10 @@
     // delete all, only delete one.
     function deleteRecord() {
       // TODO
+      document
+        .getElementById("recordForm")
+        .style.display = "none";
+      
       let endpoint = document.getElementById("endpoint").value;
       let id = prompt("Enter record id");
       let curr_endpoint = endpoint + '/' + id;
