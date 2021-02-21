@@ -150,55 +150,52 @@
     // From the 4 CRUD actions, this is the CREATE action, and uses the POST http method.
     // The main difference from updateRecord() will be the URL you send data to; check
     // the writeup to view the URL pattern for create and update
-    function createRecord() {
-      let endpoint = document.getElementById("endpoint").value;
+    function createRecord(todo) {
       
-      // Clear output display
-      document.getElementById("output").innerText = "";
+      if (todo === 'show') {
+        // Clear output display
+        document.getElementById("output").innerText = "";
 
-      // Show only recordForm
-      document
-        .getElementById("recordForm")
-        .style.display = "block";
-      document
-        .getElementById("recordIDcontainer")
-        .style.display = "none";
+        // Show only recordForm
+        document
+          .getElementById("recordForm")
+          .style.display = "block";
+        document
+          .getElementById("recordIDcontainer")
+          .style.display = "none";
+      }
+      else if (todo === 'submit') {
+        let endpoint = document.getElementById("endpoint").value;
 
-      // Creating an event listender for the submit
-      document
-        .getElementById("recordForm")
-        .addEventListener("submit", event => {
-          event.preventDefault(); // Don't let the page reset
+        // Gather the info on author and title
+        let author = document.getElementById("author").value;
+        let title = document.getElementById("title").value;
 
-          // Gather the info on author and title
-          let author = document.getElementById("author").value;
-          let title = document.getElementById("title").value;
+        const data = {
+          "title": title,
+          "author": author
+        };
 
-          const data = {
-            "title": title,
-            "author": author
-          };
-
-          // Begin fetching
-          fetch(endpoint, {
-            method: 'POST', // or 'PUT'
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
+        // Begin fetching
+        fetch(endpoint, {
+          method: 'POST', // or 'PUT'
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        })
+        .then(handleErrors)
+        .then(function (response) {
+            response.json().then(function (data) {
+            console.log("Success?", data);
+          document.getElementById("output").innerText = JSON.stringify(data);
           })
-            .then(handleErrors)
-            .then(function (response) {
-                response.json().then(function (data) {
-                console.log("Success?", data);
-              document.getElementById("output").innerText = JSON.stringify(data);
-              })
-            })
-            .catch(err => {
-              document.getElementById("output").innerText = err;
-              alert("Error Detected");
-            });
+        })
+        .catch(err => {
+          document.getElementById("output").innerText = err;
+          alert("Error Detected");
         });
+      }
 
 
     }
@@ -207,55 +204,49 @@
     // From the 4 CRUD actions, this is the UPDATE action, and uses the PUT http method.
     // The main difference from createRecord() will be the URL you send data to; check
     // the writeup to view the URL pattern for create and update
-    function updateRecord() {
+    function updateRecord(todo) {
       // TODO
-      //document.getElementById("recordIDcontainer").style.display = "block";
-      let endpoint = document.getElementById("endpoint").value;
-      document.getElementById("output").innerText = "";
+      if (todo === 'show') {
+        document.getElementById("output").innerText = "";
 
-      document
-        .getElementById("recordForm")
-        .style.display = "block";
-      document
-        .getElementById("recordIDcontainer")
-        .style.display = "block";
+        document
+          .getElementById("recordForm")
+          .style.display = "block";
+        document
+          .getElementById("recordIDcontainer")
+          .style.display = "block";
+      }
 
-      document
-        .getElementById("recordForm")
-        .addEventListener("submit", event => {
-          event.preventDefault();
+      else if (todo === 'submit') {
+        let endpoint = document.getElementById("endpoint").value;
+        let author = document.getElementById("author").value;
+        let title = document.getElementById("title").value;
+        let id = document.getElementById("recordID").value;
+        let curr_endpoint = endpoint + '/' + id;
+        const data = {
+          "id": id,
+          "title": title,
+          "author": author
+        };
 
-          let author = document.getElementById("author").value;
-          let title = document.getElementById("title").value;
-          let id = document.getElementById("recordID").value;
-          let curr_endpoint = endpoint + '/' + id;
-          const data = {
-            "id": id,
-            "title": title,
-            "author": author
-          };
-
-          fetch(curr_endpoint, {
-            method: 'PUT', // 
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
+        fetch(curr_endpoint, {
+          method: 'PUT', // 
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        })
+        .then(handleErrors)
+        .then(function (response) {
+          response.json().then(function (data) {
           })
-            .then(handleErrors)
-            .then(function (response) {
-              if (response.status !== 200) {
-                console.log('Looks like there was a problem. Status Code: ' + response.status);
-                alert("PROBLEMO!");
-              }
-              response.json().then(function (data) {
-              })
-            })
-            .catch(err => {
-              document.getElementById("output").innerText = err;
-              alert("Error Detected");
-            });
+          document.getElementById("output").innerText = JSON.stringify(data);
+        })
+        .catch(err => {
+          document.getElementById("output").innerText = err;
+          alert("Error Detected");
         });
+      }
     }
 
     // This function should use fetch to delete one existing entry in the given endpoint.
