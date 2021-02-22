@@ -1,18 +1,67 @@
 {
   "posts": [
     {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
-    }
-  ],
-  "comments": [
+      "id": 2,
+      "title": "Smith",
+      "author": "Adam"
+    },
     {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "id": 3,
+      "title": "adadadada",
+      "author": "adadaada"
+    },
+    {
+      "id": 5,
+      "title": "sppppppy",
+      "author": "spppp"
+    },
+    {
+      "id": 6,
+      "title": "mama",
+      "author": "dada"
+    },
+    {
+      "title": "gdgdfgsvs",
+      "author": "jfaklsfafag",
+      "id": 7
+    },
+    {
+      "title": "dasdas",
+      "author": "dqdqa",
+      "id": 8
+    },
+    {
+      "title": "adadadaadaa",
+      "author": "dasdad",
+      "id": 9
+    },
+    {
+      "title": "bbbbbbbbbbbb",
+      "author": "aaaaaaaaaaaaaa",
+      "id": 10
+    },
+    {
+      "title": "bbbbbbbbbbbb",
+      "author": "aaaaaaaaaaaaaa",
+      "id": 11
+    },
+    {
+      "title": "dasdadadadad",
+      "author": "adadadadadad",
+      "id": 12
+    },
+    {
+      "title": "moooooom",
+      "author": "daaaaaad",
+      "id": 13
+    },
+    {
+      "title": "bbbbb",
+      "author": "aaaaa",
+      "id": 14
     }
   ],
+  "comments": [],
   "profile": {
     "name": "typicode"
   }
